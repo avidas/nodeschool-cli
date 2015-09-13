@@ -1,0 +1,8 @@
+nodeschool-cli --list
+
+  Prints which nodeschool modules are installed and not installed on your system.
+
+nodeschool-cli --list
+nodeschool-cli -l
+
+  List all the nodeschool modules installed in the system
