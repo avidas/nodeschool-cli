@@ -1,5 +1,5 @@
 # nodeschool-cli
-View available nodeschool modules and the ones installed in your system.
+View available nodeschool modules and whether or not they are installed in your system. Tested on Mac OSX and Linux(Ubuntu).
 
 [![Build status](https://travis-ci.org/avidas/nodeschool-cli.svg?branch=master)](https://travis-ci.org/avidas/nodeschool-cli)
 
@@ -40,8 +40,8 @@ test-anything NOT INSTALLED
 ```
 
 ## TODO
--- cache the module names
--- install all?
+* cache the module names
+* install all?
 
 ## License
 

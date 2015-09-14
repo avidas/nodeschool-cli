@@ -54,7 +54,7 @@ if (argv.list) {
                 exec(existsPath, _puts);
             });
         } else {
-            console.error('Could not download the url.')
+            console.error('Could not reach nodeschool website. Please retry soon.')
         }
     });
 }
