@@ -24,6 +24,8 @@ nodeschool-cli -l
   List all the nodeschool modules installed in the system
 ```
 
+## Output
+
 ```
 introtowebgl NOT INSTALLED
 browserify-adventure INSTALLED
