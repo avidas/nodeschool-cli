@@ -9,7 +9,7 @@ View available nodeschool modules and whether or not they are installed in your 
 npm install -g nodeschool-cli
 ```
 
-to get the `nodeschool-cli` command.
+to get the `nodeschool-cli` command in your terminal.
 
 ## Usage
 
@@ -44,6 +44,7 @@ test-anything NOT INSTALLED
 ## TODO
 * cache the module names
 * install all?
+* differentiate between finished/unfinished modules
 
 ## License
 

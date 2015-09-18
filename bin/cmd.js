@@ -9,8 +9,7 @@ var cheerio = require("cheerio");
 var argv = minimist(process.argv.slice(2), {
     alias: {
         l: [ 'ls', 'list'],
-        h: 'help',
-        i: 'install'
+        h: 'help'
     }
 });
 
@@ -24,7 +23,7 @@ function _isOptionalArg(value) {
   return value.indexOf('-') !== 0
 }
 
-function _download (url, callback) {
+function _download(url, callback) {
   http.get(url, function(res) {
     var data = "";
     res.on('data', function (chunk) {
@@ -38,9 +37,14 @@ function _download (url, callback) {
   });
 }
 
-if (argv.help) {
-    return fs.createReadStream(__dirname + '/usage.txt')
-        .pipe(process.stdout);
+function _parseModuleName(command) {
+    var arr = command.split(' ').slice(2);
+    return arr.filter(_isOptionalArg)[0];
+}
+
+function _checkInstalled(moduleName) {
+    var existsPath = 'if [ -x "$(command -v ' + moduleName + ')" ]; then echo "' + moduleName + ' INSTALLED" >&1; else echo "' + moduleName + ' NOT INSTALLED" >&1; fi';
+    exec(existsPath, _puts);
 }
 
 if (argv.list) {
@@ -48,13 +52,14 @@ if (argv.list) {
         if (data) {
             var $ = cheerio.load(data);
             $('.workshopper[id] code').each(function (i, e) {
-                var arr = $(this).text().split(' ').slice(2);
-                var moduleName = arr.filter(_isOptionalArg)[0];
-                var existsPath = 'if [ -x "$(command -v ' + moduleName + ')" ]; then echo "' + moduleName + ' INSTALLED" >&1; else echo "' + moduleName + ' NOT INSTALLED" >&1; fi';
-                exec(existsPath, _puts);
+                var moduleName = _parseModuleName($(this).text());
+                _checkInstalled(moduleName);
             });
         } else {
             console.error('Could not reach nodeschool website. Please retry soon.')
         }
     });
+} else {
+    return fs.createReadStream(__dirname + '/usage.txt')
+        .pipe(process.stdout);    
 }
